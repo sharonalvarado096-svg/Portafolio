@@ -1,0 +1,52 @@
+<section class="projects-section py-5" style="background: linear-gradient(120deg,#e3eafc 0%,#f7f7fa 100%); min-height: 80vh;">
+  <div class="container">
+  <!-- Título eliminado para evitar duplicidad en todas las páginas -->
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="border mb-4 bg-white" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+          <div class="px-4 py-3 border-bottom bg-gradient text-dark fw-bold" style="border-radius: 8px 8px 0 0; background: linear-gradient(90deg,#e3e3e3,#f7f7f7);">Proyectos en C</div>
+          <div class="list-group list-group-flush">
+            @if (uploadService.projects$ | async; as projects) {
+              @for (project of projects; track project.name) {
+                <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-0"
+                        [ngClass]="{'active': selectedProject?.name === project.name, 'fw-bold text-primary': selectedProject?.name === project.name}"
+                        (click)="viewProject(project)"
+                        style="border-radius: 0; padding: 1rem 1.25rem; background: none;">
+                  <span>
+                    <strong [ngClass]="{'text-primary': selectedProject?.name === project.name}">{{ project.name }}</strong>
+                    <br>
+                    <small class="text-muted">{{ project.description }}</small>
+                  </span>
+                  <span class="badge bg-info text-dark">{{ formatBytes(project.size) }}</span>
+                </button>
+              }
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="card shadow mb-4 h-100" style="border-radius: 12px; background: #f8fafc;">
+          <div class="card-body" style="min-height: 320px;">
+            <div *ngIf="selectedProject; else noProject">
+              <h4 class="fw-bold text-primary mb-2">{{ selectedProject.name }}</h4>
+              <div class="mb-3 text-muted" style="font-size: 1rem;">
+                @if (uploadService.projects$ | async; as projects) {
+                  @for (project of projects; track project.name) {
+                    @if (project.name === selectedProject.name) {
+                      {{ project.description }}
+                    }
+                  }
+                }
+              </div>
+              <pre class="bg-white p-3 border rounded" style="font-size: 1rem; margin-bottom: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04);"><code>{{ selectedProject.content }}</code></pre>
+              <a [href]="getDownloadUrl(selectedProject.name)" download class="btn btn-outline-success mt-3">Descargar archivo</a>
+            </div>
+            <ng-template #noProject>
+              <div class="text-muted">Selecciona un proyecto para ver su código fuente.</div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

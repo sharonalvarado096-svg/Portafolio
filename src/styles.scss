@@ -1,1 +1,106 @@
-/* You can add global styles to this file, and also import other style files */
+// Import Bootstrap
+@use 'bootstrap' as *;
+
+// Global styles
+$primary-color: #0d6efd;
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fafafa;
+}
+
+// Custom styles
+.section {
+  padding: 4rem 0;
+  
+  &-title {
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+}
+
+// Utility classes
+.text-justify {
+  text-align: justify;
+}
+
+// Navbar
+.navbar {
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
+  background: linear-gradient(90deg, $primary-color 60%, #6f42c1 100%);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+}
+
+.nav-link.active, .nav-link:focus, .nav-link:hover {
+  color: #fff !important;
+  text-shadow: 0 1px 8px rgba(13,110,253,0.2);
+}
+
+// Hero/About
+.about-hero {
+  background: linear-gradient(120deg, #f8fafc 60%, #e3e6f3 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px 0 rgba(13,110,253,0.07);
+}
+.profile-img-wrapper {
+  box-shadow: 0 8px 32px 0 rgba(13,110,253,0.12);
+  border-radius: 50%;
+  background: #fff;
+  padding: 1rem;
+}
+
+// Section titles
+.section-title {
+  font-size: 2.5rem;
+  color: $primary-color;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 2rem;
+}
+
+// Cards y listas
+.card, .list-group-item {
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.06);
+}
+
+.card-header {
+  background: $primary-color;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 1rem 1rem 0 0;
+}
+
+// Botones
+.btn-primary, .btn-outline-primary {
+  border-radius: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px 0 rgba(13,110,253,0.08);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover, .btn-outline-primary:hover {
+  background: #0b5ed7;
+  color: #fff;
+  box-shadow: 0 4px 16px 0 rgba(13,110,253,0.15);
+}
+
+// Animaciones suaves
+.section, .card, .navbar, .profile-img-wrapper {
+  transition: box-shadow 0.3s, background 0.3s, border 0.3s;
+}
+
+// Responsive
+@media (max-width: 767px) {
+  .about-hero {
+    padding: 2rem 0;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+}
