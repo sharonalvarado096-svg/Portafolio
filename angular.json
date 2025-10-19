@@ -27,6 +27,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "outputPath": "docs",
+            "baseHref": "/Portafolio/",
             "assets": [
               {
                 "glob": "**/*",
